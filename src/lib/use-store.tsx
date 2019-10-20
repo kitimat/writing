@@ -68,7 +68,7 @@ export const useStore = () => {
 
         dispatch({ type: "UPDATE_TEXT", text });
 
-        typingTimeoutId = setTimeout(() => {
+        typingTimeoutId = window.setTimeout(() => {
           dispatch({ type: "STOPPED_TYPING" });
         }, TYPING_DEBOUNCE);
       },
