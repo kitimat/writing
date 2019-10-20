@@ -11,7 +11,8 @@ export const App = () => {
   React.useEffect(() => actions.startTicking(), []);
 
   const focusTrap = React.useCallback(() => {
-    editorRef.current!.focus();
+    const textarea = editorRef.current!;
+    textarea.focus();
   }, [editorRef]);
 
   return (
