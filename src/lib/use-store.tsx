@@ -1,9 +1,15 @@
 import React from "react";
+import {
+  MAX_MS,
+  TICK_RATE_MS,
+  TYPING_DEBOUNCE,
+  PLACEHOLDER
+} from "../constants";
 
 type State = {
   text: string;
   placeholder: string;
-  secondsRemaining: number;
+  timeRemaining: number;
   isTyping: boolean;
 };
 
@@ -14,12 +20,12 @@ type Action =
 
 const initialState: State = {
   text: "",
-  placeholder: "",
-  secondsRemaining: 60 * 5, // 5 minutes
+  placeholder: PLACEHOLDER,
+  timeRemaining: MAX_MS,
   isTyping: false
 };
 
-const reducer = (state: State, action: Action) => {
+const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "UPDATE_TEXT":
       return {
@@ -37,13 +43,13 @@ const reducer = (state: State, action: Action) => {
         return state;
       }
 
-      if (state.secondsRemaining <= 0) {
+      if (state.timeRemaining <= 0) {
         return state;
       }
 
       return {
         ...state,
-        secondsRemaining: state.secondsRemaining - 1
+        timeRemaining: state.timeRemaining - TICK_RATE_MS
       };
     default:
       return state;
@@ -64,12 +70,12 @@ export const useStore = () => {
 
         typingTimeoutId = setTimeout(() => {
           dispatch({ type: "STOPPED_TYPING" });
-        }, 1000);
+        }, TYPING_DEBOUNCE);
       },
       startTicking() {
         const tickIntervalId = setInterval(() => {
           dispatch({ type: "TICK" });
-        }, 1000);
+        }, TICK_RATE_MS);
 
         return () => clearInterval(tickIntervalId);
       }

@@ -1,6 +1,7 @@
 import React from "react";
-import { Editor } from "./editor";
 import { useStore } from "../lib/use-store";
+import { Editor } from "./editor";
+import { Time } from "./time";
 import style from "./app.css";
 
 export const App = () => {
@@ -24,6 +25,7 @@ export const App = () => {
             placeholder={state.placeholder}
             onChangeText={actions.updateText}
           />
+          <Time remaining={state.timeRemaining} />
         </div>
       </main>
       <footer className={style.footer}></footer>

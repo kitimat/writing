@@ -1,0 +1,10 @@
+.timeContainer {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.time {
+  height: 2px;
+  transition: width linear 0.1s;
+}
