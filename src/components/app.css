@@ -1,0 +1,26 @@
+.header {
+  height: 50px;
+  background: rgb(220, 220, 220);
+}
+
+.footer {
+  height: 100px;
+  background: rgb(235, 235, 235);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 40px auto 40px;
+  grid-template-rows: 2em calc(100% - 4em) 2em;
+  height: calc(100% - 50px - 100px);
+
+  background: rgb(235, 235, 235);
+}
+
+.editorWrapper {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  cursor: text;
+}
