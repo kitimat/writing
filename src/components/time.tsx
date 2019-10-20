@@ -16,6 +16,7 @@ export const Time = (props: Props) => {
   return (
     <div className={style.timeContainer}>
       <div className={style.time} style={{ background, width }} />
+      {props.remaining === 0 && "🚗💨🏁"}
     </div>
   );
 };

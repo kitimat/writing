@@ -5,6 +5,6 @@
 }
 
 .time {
-  height: 2px;
+  height: 5px;
   transition: width linear 0.1s;
 }
