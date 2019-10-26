@@ -23,4 +23,4 @@ module.exports={header:"_header_6f4b9",footer:"_footer_6f4b9",container:"_contai
 },{"react":"AQ6k","../lib/use-store":"q8vq","./editor":"joIe","./time":"XfW4","./app.css":"JD4S"}],"zo2T":[function(require,module,exports) {
 "use strict";var e=u(require("react")),r=u(require("react-dom")),t=require("./components/app");function u(e){return e&&e.__esModule?e:{default:e}}navigator.serviceWorker.register("/service-worker.js",{scope:"."});var a=document.getElementById("root");r.default.render(e.default.createElement(t.App,null),a);
 },{"react":"AQ6k","react-dom":"AQ6k","./components/app":"DKsQ","./service-worker.ts":[["service-worker.js","aYFC"],"service-worker.js.map","aYFC"]}]},{},["zo2T"], null)
-//# sourceMappingURL=/src.31cd0af4.js.map
+//# sourceMappingURL=/src.d76e5c68.js.map
