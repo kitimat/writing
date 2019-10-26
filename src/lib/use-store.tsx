@@ -39,11 +39,7 @@ const reducer = (state: State, action: Action): State => {
         isTyping: false
       };
     case "TICK":
-      if (!state.isTyping) {
-        return state;
-      }
-
-      if (state.timeRemaining <= 0) {
+      if (!state.isTyping || state.timeRemaining <= 0) {
         return state;
       }
 

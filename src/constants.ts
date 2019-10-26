@@ -3,4 +3,4 @@ export const TICK_RATE_MS = 100;
 export const TYPING_DEBOUNCE = 250;
 export const MAX_HUE = 150;
 export const PLACEHOLDER = "";
-export const FINISHED_MESSAGE = "✅";
+export const FINISHED_MESSAGE = "Time is up!";

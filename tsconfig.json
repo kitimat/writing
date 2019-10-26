@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "lib": ["dom", "esnext", "webworker"],
     "allowJs": false,
     "target": "esnext",
     "moduleResolution": "node",

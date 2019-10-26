@@ -4,21 +4,21 @@
   "main": "index.js",
   "author": "Gabe Scholz",
   "license": "MIT",
-  "devDependencies": {
-    "parcel-bundler": "^1.12.4",
-    "typescript": "^3.6.4"
-  },
   "dependencies": {
     "@types/node": "^7.0.10",
     "@types/react": "^16.9.9",
     "@types/react-dom": "^16.9.2",
     "autoprefixer": "^9.6.5",
+    "husky": "^3.0.9",
+    "parcel-bundler": "^1.12.4",
     "postcss-modules": "^1.4.1",
-    "preact": "^10.0.0"
+    "preact": "^10.0.0",
+    "typescript": "^3.6.4"
   },
   "scripts": {
-    "dev": "parcel index.html --out-dir .build",
-    "build": "rm -rf build && parcel build index.html --out-dir build"
+    "pre-commit": "yarn build",
+    "dev": "parcel src/index.html --out-dir .build",
+    "build": "rm -rf build && parcel build src/index.html --out-dir build"
   },
   "alias": {
     "react": "preact/compat",

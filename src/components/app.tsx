@@ -8,12 +8,14 @@ export const App = () => {
   const [state, actions] = useStore();
   const editorRef = React.useRef<HTMLTextAreaElement>(null);
 
-  React.useEffect(() => actions.startTicking(), []);
+  React.useEffect(() => {
+    return actions.startTicking();
+  }, []);
 
   const focusTrap = React.useCallback(() => {
     const textarea = editorRef.current!;
     textarea.focus();
-  }, [editorRef]);
+  }, [editorRef.current]);
 
   return (
     <>
