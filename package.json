@@ -16,12 +16,16 @@
     "typescript": "^3.6.4"
   },
   "scripts": {
-    "pre-commit": "yarn build",
     "dev": "parcel src/index.html --out-dir .build",
     "build": "rm -rf build && parcel build src/index.html --out-dir build"
   },
   "alias": {
     "react": "preact/compat",
     "react-dom": "preact/compat"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn build"
+    }
   }
 }
