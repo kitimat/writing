@@ -9,7 +9,7 @@
 .time {
   position: absolute;
   height: 5px;
-  transition: width linear 0.1s;
+  transition: width linear 0.05s;
 }
 
 .timeUnderlay {
