@@ -15,12 +15,6 @@ scope.addEventListener("activate", event => {
   );
 });
 
-scope.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(CACHE_KEY).then(cache => cache.add("index.html"))
-  );
-});
-
 scope.addEventListener("fetch", event => {
   event.respondWith(
     caches.open(CACHE_KEY).then(cache => {
