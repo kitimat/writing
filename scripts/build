@@ -1,3 +1,9 @@
+#!/bin/sh
+
+export BUILD_ID=$(openssl rand -base64 12)
+
+echo "Building with BUILD_ID=\"$BUILD_ID\""
+
 rm -rf docs
 yarn parcel build src/index.html --out-dir docs
 echo 5min.pw > docs/CNAME

@@ -1,5 +1,19 @@
-const CACHE_KEY = "journal-cache";
+const CACHE_KEY = `journal-cache-${process.env.BUILD_ID}`;
 const scope: ServiceWorkerGlobalScope = self as any;
+
+scope.addEventListener("activate", event => {
+  event.waitUntil(
+    caches
+      .keys()
+      .then(cacheNames =>
+        Promise.all(
+          cacheNames
+            .filter(cacheName => cacheName !== CACHE_KEY)
+            .map(cacheName => caches.delete(cacheName))
+        )
+      )
+  );
+});
 
 scope.addEventListener("install", event => {
   event.waitUntil(
