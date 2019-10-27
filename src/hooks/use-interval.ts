@@ -11,7 +11,7 @@ export const useInterval = (cb: () => void, ms: number) => {
 
   React.useEffect(() => {
     const tick = () => {
-      if (callbackRef.current) callbackRef.current();
+      if (typeof callbackRef.current === "function") callbackRef.current();
     };
 
     let intervalId = setInterval(tick, ms);
