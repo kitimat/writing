@@ -28,6 +28,11 @@ scope.addEventListener("fetch", event => {
         return (
           resA ||
           fetch(event.request).then(resB => {
+            if (event.request.url.indexOf("http") !== 0) {
+              // not an HTTP request so don't cache
+              return resB;
+            }
+
             cache.put(event.request, resB.clone());
             return resB;
           })
