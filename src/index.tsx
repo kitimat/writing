@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./components/app";
 
-if (navigator.serviceWorker) {
+if (process.env.NODE_ENV === "production" && navigator.serviceWorker) {
   navigator.serviceWorker.register("./service-worker.ts", { scope: "." });
 }
 

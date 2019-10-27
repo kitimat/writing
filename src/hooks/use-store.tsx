@@ -28,6 +28,10 @@ const initialState: State = {
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "UPDATE_TEXT":
+      if (action.text.length <= state.text.length) {
+        return state;
+      }
+
       return {
         ...state,
         text: action.text,
@@ -68,12 +72,8 @@ export const useStore = () => {
           dispatch({ type: "STOPPED_TYPING" });
         }, TYPING_DEBOUNCE);
       },
-      startTicking() {
-        const tickIntervalId = setInterval(() => {
-          dispatch({ type: "TICK" });
-        }, TICK_RATE_MS);
-
-        return () => clearInterval(tickIntervalId);
+      tick() {
+        dispatch({ type: "TICK" });
       }
     };
   }, [dispatch]);

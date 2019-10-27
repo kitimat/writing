@@ -1,16 +1,16 @@
 import React from "react";
-import { useStore } from "../lib/use-store";
+import { useStore } from "../hooks/use-store";
+import { useInterval } from "../hooks/use-interval";
 import { Editor } from "./editor";
 import { Time } from "./time";
 import style from "./app.css";
+import { TICK_RATE_MS } from "../constants";
 
 export const App = () => {
   const [state, actions] = useStore();
   const editorRef = React.useRef<HTMLTextAreaElement>(null);
 
-  React.useEffect(() => {
-    return actions.startTicking();
-  }, []);
+  useInterval(actions.tick, TICK_RATE_MS);
 
   const focusTrap = React.useCallback(() => {
     const textarea = editorRef.current!;
@@ -22,13 +22,13 @@ export const App = () => {
       <header className={style.header}></header>
       <main className={style.container}>
         <div className={style.editorWrapper} onClick={focusTrap}>
+          <Time remaining={state.timeRemaining} />
           <Editor
             ref={editorRef}
             text={state.text}
             placeholder={state.placeholder}
             onChangeText={actions.updateText}
           />
-          <Time remaining={state.timeRemaining} />
         </div>
       </main>
       <footer className={style.footer}></footer>

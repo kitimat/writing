@@ -1,4 +1,5 @@
 import React from "react";
+import { useGetSelection } from "../hooks/use-get-selection";
 import style from "./editor.css";
 
 type Props = {
@@ -8,10 +9,28 @@ type Props = {
 };
 
 export const Editor = React.forwardRef<HTMLTextAreaElement, Props>(
-  (props: Props, ref) => {
-    const handleChange = (ev: React.SyntheticEvent<HTMLTextAreaElement>) => {
+  (props: Props, ref: React.Ref<HTMLTextAreaElement>) => {
+    const removeSelection = () => {
+      const textAreaRef = ref && "current" in ref ? ref.current : null;
+
+      if (textAreaRef) {
+        textAreaRef.selectionStart = Number.MAX_SAFE_INTEGER;
+        textAreaRef.selectionEnd = Number.MAX_SAFE_INTEGER;
+      }
+    };
+
+    useGetSelection(removeSelection);
+
+    const handleChange = (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
+      removeSelection();
+
       const next = ev.currentTarget.value;
       props.onChangeText(next);
+    };
+
+    const handleKeyDown = (ev: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      if (ev.which === 8) ev.preventDefault();
+      removeSelection();
     };
 
     return (
@@ -21,8 +40,13 @@ export const Editor = React.forwardRef<HTMLTextAreaElement, Props>(
           className={style.editor}
           value={props.text}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          onMouseMove={removeSelection}
+          onMouseDown={removeSelection}
+          onMouseUp={removeSelection}
           autoFocus
           placeholder={props.placeholder}
+          spellCheck={false}
         />
       </div>
     );

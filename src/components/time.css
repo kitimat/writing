@@ -1,26 +1,25 @@
+:root {
+  --height: 3px;
+}
+
 .timeContainer {
   position: relative;
-  height: 5px;
+  height: var(--height);
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
 }
 
-.time {
-  position: absolute;
-  height: 5px;
-  transition: width linear 0.05s;
-}
-
 .timeUnderlay {
   position: absolute;
-  height: 5px;
+  height: var(--height);
   width: 100%;
   background: rgb(220, 220, 220);
 }
 
 .message {
   position: absolute;
-  top: 10px;
+  top: -1.75rem;
+  right: 0;
   font-size: 1rem;
 }

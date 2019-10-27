@@ -11,17 +11,16 @@
     "autoprefixer": "^9.6.5",
     "husky": "^3.0.9",
     "parcel-bundler": "^1.12.4",
+    "postcss-css-variables": "^0.13.0",
     "postcss-modules": "^1.4.1",
-    "preact": "^10.0.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "typescript": "^3.6.4"
   },
   "scripts": {
     "dev": "parcel src/index.html --out-dir .build",
-    "build": "rm -rf docs && parcel build src/index.html --out-dir docs"
-  },
-  "alias": {
-    "react": "preact/compat",
-    "react-dom": "preact/compat"
+    "build": "rm -rf docs && parcel build src/index.html --out-dir docs",
+    "clean": "rm -rf .build .cache"
   },
   "husky": {
     "hooks": {
