@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { App } from "./components/app";
 
 if (process.env.NODE_ENV === "production" && navigator.serviceWorker) {
-  navigator.serviceWorker.register("./service-worker.ts", { scope: "." });
+  navigator.serviceWorker.register("./service-worker.ts", { scope: "/src/" });
 }
 
 const element = document.getElementById("root");

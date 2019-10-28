@@ -5,7 +5,7 @@ export BUILD_ID=$(openssl rand -hex 12)
 echo "Building with BUILD_ID=\"$BUILD_ID\""
 yarn clean
 rm -rf docs
-yarn parcel build src/index.html --out-dir docs
+yarn parcel build index.html --out-dir docs
 
 echo "Writing CNAME file"
 echo 5min.pw > docs/CNAME
