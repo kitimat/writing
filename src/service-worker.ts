@@ -1,4 +1,4 @@
-const CACHE_KEY = `journal-cache-${process.env.BUILD_ID}`;
+const CACHE_KEY = `writing-cache-${process.env.BUILD_ID}`;
 const scope: ServiceWorkerGlobalScope = self as any;
 
 scope.addEventListener("activate", event => {
