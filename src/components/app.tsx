@@ -27,6 +27,7 @@ export const App = () => {
             ref={editorRef}
             text={state.text}
             placeholder={state.placeholder}
+            disabled={state.timeRemaining === 0}
             onChangeText={actions.updateText}
           />
         </div>

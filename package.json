@@ -13,6 +13,7 @@
     "parcel-bundler": "^1.12.4",
     "postcss-css-variables": "^0.13.0",
     "postcss-modules": "^1.4.1",
+    "posthtml-expressions": "^1.1.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "typescript": "^3.6.4"

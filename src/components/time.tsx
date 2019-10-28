@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./time.css";
-import { MAX_MS, MAX_HUE } from "../constants";
 import { useInterval } from "../hooks/use-interval";
 
 type Props = {
@@ -22,8 +21,18 @@ export const Time = React.memo((props: Props) => {
 
   useInterval(intervalCb, 500);
 
-  const minutesLeft = Math.floor(props.remaining / MINUTE_MS);
-  const secondsLeft = Math.ceil((props.remaining % MINUTE_MS) / SECOND_MS);
+  let minutesLeft = Math.floor(props.remaining / MINUTE_MS);
+  let secondsLeft = Math.ceil((props.remaining % MINUTE_MS) / SECOND_MS);
+
+  /**
+   * do this because using `Math.ceil` for seconds will result in `4:60`, `3:60`, etc.
+   * and it would be better to just leave it at `5:00`, `4:00` etc.
+   */
+  if (secondsLeft === 60) {
+    minutesLeft = minutesLeft + 1;
+    secondsLeft = 0;
+  }
+
   const formattedTimeLeft = `${minutesLeft}:${("0" + secondsLeft).slice(-2)}`;
 
   const messageStyle = {

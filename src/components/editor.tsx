@@ -5,6 +5,7 @@ import style from "./editor.css";
 type Props = {
   text: string;
   placeholder: string;
+  disabled: boolean;
   onChangeText(next: string): void;
 };
 
@@ -39,13 +40,14 @@ export const Editor = React.forwardRef<HTMLTextAreaElement, Props>(
           ref={ref}
           className={style.editor}
           value={props.text}
+          placeholder={props.placeholder}
+          disabled={props.disabled}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           onMouseMove={removeSelection}
           onMouseDown={removeSelection}
           onMouseUp={removeSelection}
           autoFocus
-          placeholder={props.placeholder}
           spellCheck={false}
         />
       </div>
