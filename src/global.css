@@ -1,5 +1,6 @@
 html,
-body {
+body,
+:global(#root) {
   height: 100%;
   min-height: 100%;
   margin: 0;
