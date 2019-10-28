@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export BUILD_ID=$(openssl rand -base64 12)
+export BUILD_ID=$(openssl rand -hex 12)
 
 echo "Building with BUILD_ID=\"$BUILD_ID\""
 yarn clean
