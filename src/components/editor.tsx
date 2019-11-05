@@ -1,5 +1,4 @@
 import React from "react";
-import { useGetSelection } from "../hooks/use-get-selection";
 import style from "./editor.css";
 
 type Props = {
@@ -9,48 +8,37 @@ type Props = {
   onChangeText(next: string): void;
 };
 
-export const Editor = React.forwardRef<HTMLTextAreaElement, Props>(
-  (props: Props, ref: React.Ref<HTMLTextAreaElement>) => {
-    const removeSelection = () => {
-      const textAreaRef = ref && "current" in ref ? ref.current : null;
+export const Editor = (props: Props) => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
-      if (textAreaRef) {
-        textAreaRef.selectionStart = Number.MAX_SAFE_INTEGER;
-        textAreaRef.selectionEnd = Number.MAX_SAFE_INTEGER;
-      }
-    };
+  const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    const next = props.text + ev.currentTarget.value;
+    props.onChangeText(next);
+  };
 
-    useGetSelection(removeSelection);
+  const handleBlur = (ev: React.SyntheticEvent) => {
+    ev.preventDefault();
+    inputRef.current!.focus();
+  };
 
-    const handleChange = (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
-      removeSelection();
-
-      const next = ev.currentTarget.value;
-      props.onChangeText(next);
-    };
-
-    const handleKeyDown = (ev: React.KeyboardEvent<HTMLTextAreaElement>) => {
-      if (ev.which === 8) ev.preventDefault();
-      removeSelection();
-    };
-
-    return (
-      <div className={style.editorContainer}>
-        <textarea
-          ref={ref}
-          className={style.editor}
-          value={props.text}
-          placeholder={props.placeholder}
-          disabled={props.disabled}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          onMouseMove={removeSelection}
-          onMouseDown={removeSelection}
-          onMouseUp={removeSelection}
-          autoFocus
-          spellCheck={false}
-        />
-      </div>
-    );
-  }
-);
+  return (
+    <div className={style.editorContainer}>
+      <input
+        ref={inputRef}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value=""
+        autoFocus
+        disabled={props.disabled}
+        className={style.input}
+      />
+      <textarea
+        disabled
+        className={style.editor}
+        value={props.text}
+        placeholder={props.placeholder}
+        spellCheck={false}
+      />
+    </div>
+  );
+};
